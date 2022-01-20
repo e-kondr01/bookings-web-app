@@ -1,0 +1,16 @@
+{
+  "python.formatting.provider": "black",
+  "python.linting.mypyArgs": [],
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pycodestyleEnabled": false,
+  "python.linting.pylintArgs": [
+    "--rcfile=${workspaceFolder}/.pylintrc"
+  ],
+  "editor.formatOnSave": true,
+  "python.sortImports.path": "isort",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+  },
+}
