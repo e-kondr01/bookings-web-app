@@ -8,7 +8,7 @@ from fastapi import Depends
 from fastapi_users import BaseUserManager, FastAPIUsers
 from fastapi_users.authentication import (
     AuthenticationBackend,
-    BearerTransport,
+    CookieTransport,
     JWTStrategy,
 )
 from fastapi_users.db import TortoiseUserDatabase
@@ -35,7 +35,7 @@ async def get_user_manager(user_db: Any = Depends(get_user_db)) -> Any:
     yield UserManager(user_db)
 
 
-bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
+cookie_transport = CookieTransport(cookie_max_age=3600, cookie_secure=False)
 
 
 def get_jwt_strategy() -> JWTStrategy:
@@ -44,7 +44,7 @@ def get_jwt_strategy() -> JWTStrategy:
 
 auth_backend = AuthenticationBackend(
     name="jwt",
-    transport=bearer_transport,
+    transport=cookie_transport,
     get_strategy=get_jwt_strategy,
 )
 
